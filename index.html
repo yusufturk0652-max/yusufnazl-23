@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusuf & Nazlı ❤️ Bizim Hikayemiz</title>
+    <!-- Şık Fontlar -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stil.css">
+</head>
+<body> 
+    <div class="stars"></div>
+
+    <!-- SİNEMATİK AÇILIŞ -->
+    <div id="welcomeScreen">
+        <div class="memory-background">
+            <img src="2.jpg" alt="Anı 1">
+            <img src="1.jpg" alt="Anı 2">
+            <img src="images/foto3.jpg" alt="Anı 3">
+            <img src="images/foto4.jpg" alt="Anı 4">
+        </div>
+
+        <div class="cinema-stars"></div>
+
+        <div class="cinema-content">
+            <div class="cinema-heart">❤️</div>
+            <h1 class="line1">Yusuf & Nazlı</h1>
+            <h1 class="line2">İki Kalp, Tek Aşk...</h1>
+            <h1 class="line3">Sonsuz Hikayemiz ❤️</h1>
+            <p class="date-text">19.09.2024</p>
+            <button onclick="enterSite()">Hikayemize Başla ✨</button>
+        </div>
+    </div>
+
+    <!-- MÜZİK ÇALAR (SABİT ALT ÇUBUK) -->
+    <div class="music-player">
+        <div class="song-info">
+            <strong>Şarkımız 🎶</strong>
+            <small>Yusuf & Nazlı</small>
+        </div>
+        <button id="playBtn" onclick="playMusic()">▶️</button>
+        <audio id="loveMusic" loop src="music.mp3"></audio>
+    </div>
+
+    <!-- ANA İÇERİK -->
+    <div class="main-wrapper">
+        <header>  
+            <button id="themeBtn" onclick="changeTheme()">🌙 Gece Modu</button>
+            <h1 class="main-title">Yusuf & Nazlı</h1>
+            <p class="subtitle">Sonsuza kadar sürecek aşk hikayemiz...</p>
+
+            <nav>
+                <a onclick="showPage('home')" class="nav-btn active">🏠 Ana Sayfa</a>
+                <a onclick="showPage('photos')" class="nav-btn">📸 Anılarımız</a>
+                <a onclick="showPage('notes')" class="nav-btn">💌 Defterimiz</a>
+                <a onclick="showPage('bucketlist')" class="nav-btn">🎯 Yapılacaklar</a>
+                <a onclick="showPage('puzzlePage')" class="nav-btn">🧩 Anı Puzzle</a>
+            </nav>
+        </header>
+
+        <!-- ANA SAYFA -->
+        <section id="home" class="page">
+            <div class="card glass-card">
+                <h2>📅 Sevgili Olma Tarihimiz</h2>
+                <div class="date-box">
+                    <div><b>19</b><span>Gün</span></div>
+                    <div><b>09</b><span>Ay</span></div>
+                    <div><b>2024</b><span>Yıl</span></div>
+                   
+                </div>
+            </div>
+
+            <div class="card glass-card">
+                <h2>❤️ Birlikte Geçen Süre</h2>
+                <div class="counter">
+                    <div><strong id="days">0</strong><span>Gün</span></div>
+                    <div><strong id="hours">0</strong><span>Saat</span></div>
+                    <div><strong id="minutes">0</strong><span>Dakika</span></div>
+                    <div><strong id="seconds">0</strong><span>Saniye</span></div>
+                </div>
+                <h3 id="loveTime">❤️ Sen Zamanın Bile Dokunamadığı Güzelliktesin ❤️</h3>
+            </div>
+
+            <!-- SÜRPRİZ MEKTUP KARTI -->
+            <div class="card glass-card letter-card" onclick="openLetter()">
+                <div class="envelope-icon">✉️</div>
+                <h3>Nazlı'ya Özel Aşk Mektubu</h3>
+                <p>Bugün sana ne söyleyeceğimi merak ediyorsan tıkla... ❤️</p>
+            </div>
+
+            <!-- SEVGİ SEVİYESİ (İNTERAKTİF BAR) -->
+            <div class="card glass-card love-level">
+                <h2>❤️ Sevgi Seviyemiz</h2>
+                <div class="love-bar">
+                    <div id="loveProgress">100%</div>
+                </div>
+                <p id="loveStatusText" class="love-quote">Sonsuz Sevgi & Bağlılık ♾️❤️</p>
+                
+                <div class="love-buttons">
+                    <button class="btn-love-up" onclick="changeLove(10)">💖 Seni Seviyorum</button>
+                    <button class="btn-love-down" onclick="changeLove(-15)">💔 Bugün Tartıştık</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SÜRPRİZ MEKTUP MODALI (HER DEFAINDA FARKLI MESAJ) -->
+        <div id="letterModal" class="modal hidden" onclick="closeLetter()">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <span class="close-btn" onclick="closeLetter()">&times;</span>
+                <h2>Nazlı'ma Mektup ❤️</h2>
+                <p id="randomLetterText" class="letter-body"></p>
+            </div>
+        </div>
+
+        <!-- FOTOĞRAFLAR -->
+        <section id="photos" class="page hidden">
+            <div class="card glass-card">
+                <h2>📸 Unutulmaz Anılarımız</h2>
+                <div class="gallery">
+                    <img src="1.jpg" alt="Anı">
+                    <img src="2.jpg" alt="Anı">
+                    <img src="images/foto3.jpg" alt="Anı">
+                    <img src="images/foto4.jpg" alt="Anı">
+                    <img src="images/5.jpeg" alt="Anı">
+                    <img src="images/6.jpeg" alt="Anı">
+                    <img src="images/7.jpeg" alt="Anı">
+                    <img src="images/8.jpeg" alt="Anı">
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTLAR -->
+        <section id="notes" class="page hidden">
+            <div class="card glass-card notebook">
+                <h2>📖 Aşk Defterimiz</h2>
+                <textarea id="noteText" placeholder="Yusuf & Nazlı aşkına bir anı veya not ekle..."></textarea>
+                <button onclick="addNote()" class="btn-primary">❤️ Notu Kaydet</button>
+            </div>
+
+            <div class="card glass-card">
+                <h2>📚 Biriken Notlarımız</h2>
+                <div id="notesList"></div>
+            </div>
+        </section>
+
+        <!-- BİRLİKTE YAPILACAKLAR (BUCKET LIST) -->
+        <section id="bucketlist" class="page hidden">
+            <div class="card glass-card">
+                <h2>🎯 Birlikte Yapılacaklar Listemiz</h2>
+                <div class="todo-input-group">
+                    <input type="text" id="todoInput" placeholder="Birlikte yapılacak yeni bir hayal yaz...">
+                    <button onclick="addTodo()" class="btn-primary">Ekle ✨</button>
+                </div>
+                <ul id="todoList" class="todo-list"></ul>
+            </div>
+        </section>
+
+        <!-- ANI PUZZLE OYUNU -->
+        <!-- ANI PUZZLE OYUNU -->
+<section id="puzzlePage" class="page hidden">
+    <div class="card glass-card puzzle-card">
+        <h2>🧩 Anı Puzzle Oyunu</h2>
+        <p>Parçaların üzerine tıklayıp yerlerini değiştirerek fotoğrafımızı tamamla! ❤️</p>
+        
+        <!-- Zorluk Seçimi ve Süre -->
+        <div class="puzzle-controls">
+            <button onclick="setDifficulty(3)" class="btn-diff active">Kolay (3x3)</button>
+            <button onclick="setDifficulty(4)" class="btn-diff">Orta (4x4)</button>
+            <span id="timerText">⏱️ Süre: 0s</span>
+        </div>
+
+        <div id="puzzle" class="puzzle-board"></div>
+        <h3 id="winMessage"></h3>
+    </div>
+</section>
+
+
+        <footer>
+            <p>Yusuf ❤️ Nazlı — 19.09.2024</p>
+        </footer>
+    </div>
+
+ <!-- En alttaki script etiketinin type="module" olduğundan emin ol -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
